@@ -1,0 +1,288 @@
+%{
+
+	#include <stdio.h>
+	#include <stdlib.h>
+	
+	#import "TBCCNode.h"
+	#import "TBCCBlock.h"
+	#import "TBMethodSignature.h"
+	
+	extern int yylex();
+	
+	TBCCBlock *rootBlock;
+    TBCCInputTracer *inputTrace;
+
+    extern int num_lines;
+    extern int num_column;
+
+    extern FILE *yyin;
+	
+	int yydebug = 0;
+
+    int yyErrorCode = 0;
+
+
+%}
+
+/* Represents the many different ways we can access our data */
+%union {
+
+	TBCCBlock			*block;
+    TBCCNode            *node;
+    TBCCVariable        *variable;
+    NSMutableArray      *statements;
+    TBCCStatement       *statement;
+	TBCCMethodSignature	*method_signatur;
+    TBCCAssignment        *assignment;
+    TBCCDeclaration     *declaration;
+    TBCCSendMessage       *send_message;
+
+	NSMutableArray		*parameters;
+	NSString			*string;
+	NSNumber			*number;
+    TBValue             *value;
+
+    NSString            *type;
+
+	
+	int					token;
+}
+
+%start program
+
+%token <string> TIDENTIFIER TQUOTE
+%token <string> TOP_ASSIGN TOP_EQUAL TOP_LT TOP_GT TOP_NOT TOP_IF
+%token <string> TTP_BOOLEAN TTP_NUMBER TTP_STRING TTP_OBJECT
+%token <string> TSTRING
+%token <number> TNUM
+
+%type <value> value
+
+%type <type> type
+
+%type <assignment> assignment
+%type <declaration> declaration
+
+%type <send_message> send_message
+
+%type <block> program
+%type <statements> stmts
+%type <statement> stmt
+
+%type <node> expr
+%type <method_signatur> method_signatur
+
+%type <parameters>  method_with_parameters method_without_parameters method_parameter_list
+
+
+%%
+
+
+/* program - the entry point */
+/* -------------------------------------------------------------------------- */
+
+
+program
+: stmts
+{
+	rootBlock = [[[TBCCBlock alloc] init] autorelease];
+    rootBlock.statements = $1;
+}
+|
+{
+	rootBlock = nil;
+}
+;
+
+
+/* statements */
+/* -------------------------------------------------------------------------- */
+
+stmts
+: stmt
+{
+	$$ = [[[NSMutableArray alloc] init] autorelease];
+    [$$ addObject:$1];
+}
+| stmts stmt
+{
+	[$1 addObject:$2];
+}
+;
+
+stmt
+: assignment ';'
+{
+    $$ = [[[TBCCStatement alloc] initWithNode:$1] autorelease];
+	[$$ codegen];
+}
+| declaration ';'
+{
+    $$ = [[[TBCCStatement alloc] initWithNode:$1] autorelease];
+	[$$ codegen];
+}
+| expr ';'
+{
+    $$ = [[[TBCCStatement alloc] initWithNode:$1] autorelease];
+	[$$ codegen];
+}
+;
+
+
+/* assignment */
+/* -------------------------------------------------------------------------- */
+
+assignment
+: TIDENTIFIER TOP_ASSIGN expr
+{
+	TBCCVariable *var1 = [[TBCCVariable alloc] initWithName:$1];
+    $$ = [[[TBCCAssignment alloc] initWithTarget:var1 source:$3] autorelease];
+	[var1 release];
+}
+;
+
+/* declaration */
+/* -------------------------------------------------------------------------- */
+
+declaration
+: type TIDENTIFIER
+{
+    $$ = [[[TBCCDeclaration alloc] initWithType:$1 identifier:$2] autorelease];
+}
+;
+
+expr
+: send_message          /* method call */
+{
+    $$ = $1;
+}
+| value
+{
+    $$ = $1;
+}
+;
+
+
+send_message
+: '[' TIDENTIFIER method_signatur ']'
+{
+    TBCCVariable *variable = [[TBCCVariable alloc] initWithName:$2];
+    $$ = [[[TBCCSendMessage alloc] initWithTarget:variable methodSignature:$3] autorelease];
+	[variable release];
+}
+
+/* method_signatur */
+/* -------------------------------------------------------------------------- */
+
+method_signatur
+: method_without_parameters
+{
+	$$ = [[[TBMethodSignature alloc] init] autorelease];
+	[$$ addParameterList:$1];
+}
+| method_with_parameters
+{
+	$$ = [[[TBMethodSignature alloc] init] autorelease];
+	[$$ addParameterList:$1];
+}
+;
+
+
+method_without_parameters
+: TIDENTIFIER
+{
+	$$ = [[[NSMutableArray alloc] init] autorelease];
+	[$$ addObject:$1];
+}
+;
+
+method_with_parameters
+: TIDENTIFIER ':' value method_parameter_list
+{
+	$$ = [[[NSMutableArray alloc] init] autorelease];
+	[$$ addObject:$1];
+	[$$ addObject:$3];
+	[$$ addObjectsFromArray:$4]; }
+;
+
+method_parameter_list
+: TIDENTIFIER ':' value method_parameter_list
+{
+	$$ = [[[NSMutableArray alloc] init] autorelease];
+	[$$ addObject:$1];
+	[$$ addObject:$3];
+	[$$ addObjectsFromArray:$4];
+}
+|
+{
+	$$ = [[NSMutableArray alloc] init];
+}
+;
+
+
+/* additional */
+/* -------------------------------------------------------------------------- */
+
+value
+: TSTRING
+{
+    $$ = [[[TBString alloc] init] autorelease];
+	$$.value = $1;
+}
+| TIDENTIFIER
+{
+    $$ = [[[TBIdentifier alloc] init] autorelease];
+    $$.value = $1;
+}
+| TNUM
+{
+    $$ = [[[TBNumber alloc] init] autorelease];
+	$$.value = $1;
+}
+;
+
+
+type
+: TTP_NUMBER
+{
+    $$ = [NSString stringWithUTF8String:"NSNumber"];
+}
+| TTP_STRING
+{
+    $$ = [NSString stringWithUTF8String:"NSString"];
+}
+| TTP_BOOLEAN
+{
+    $$ = [NSString stringWithUTF8String:"BOOL"];
+}
+| TTP_OBJECT
+{
+	$$ = [NSString stringWithUTF8String:"NSObject"];
+}
+
+
+%%
+
+extern int lex;
+
+int yywrap() {
+
+    return 1;
+
+//    int rc = 0;
+//
+//    if (yyErrorCode == 99) {
+//        rc = 1;
+//        fflush( yyin );
+//    }
+//
+//    return rc;
+}
+
+int yyerror(char *error)
+{
+    fprintf(stderr,"[PARSE]: [%lu:%lu] %s", num_lines, num_column, error);
+    return 2;
+}
+
+

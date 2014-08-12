@@ -1,0 +1,124 @@
+%{
+
+/**
+
+ The scanner (or tokenizer)
+
+ @file scanner.lm
+ @type lex source file
+ */
+
+    #include "y.tab.h"
+    #include <stdlib.h>
+    #include <stdio.h>
+
+	#define SAVE_TOKEN yylval.string = [[NSString alloc] initWithUTF8String:yytext];
+	#define SAVE_NUMTOKEN NSNumberFormatter * f = [[NSNumberFormatter alloc] init]; [f setNumberStyle:NSNumberFormatterDecimalStyle]; NSString *value = [[NSString alloc] initWithUTF8String:yytext];  yylval.number = [f numberFromString:value]; [f release];
+	#define TOKEN(t) (yylval.token = t)
+
+	char* yyStrippedText();
+    void yyerror(char *);
+
+    void count(void);
+
+    void lexical_error(void);
+
+    NSUInteger num_lines = 1, num_column = 1;
+%}
+
+%option stack yylineno
+%x STRING
+%x IN_COMMENT
+
+WS              ([ \t\r\n]+)
+COLON           :
+SEMI_COLON		\;
+QUOTE           \"
+
+NUM				[0-9][0-9]*
+
+
+IDENTIFIER		[a-zA-Z_][a-zA-Z0-9_]*
+
+QUIT            "QUIT"
+
+
+%%
+
+<STRING>{
+
+    {QUOTE}     {
+        count();
+        yy_pop_state();
+    }
+    [^\"\n]*           {
+        count();
+        SAVE_TOKEN; return TSTRING;
+    }
+
+
+}
+
+
+{WS}				{ count(); }
+
+{QUIT}              { count(); yyerror("quit"); }
+
+{QUOTE}             { count(); yy_push_state(STRING); }
+
+"=="                { count(); return TOKEN(TOP_EQUAL); }
+"="                 { count(); return TOKEN(TOP_ASSIGN); }
+"<"                 { count(); return TOKEN(TOP_LT); }
+">"                 { count(); return TOKEN(TOP_GT); }
+"!"                 { count(); return TOKEN(TOP_NOT); }
+"if"                { count(); return TOKEN(TOP_IF); }
+
+"{"                 { count(); return TOKEN('{'); }
+"}"                 { count(); return TOKEN('}'); }
+"["                 { count(); return TOKEN('['); }
+"]"                 { count(); return TOKEN(']'); }
+
+"BOOL"              { count(); return TOKEN(TTP_BOOLEAN); }
+"STRING"            { count(); return TOKEN(TTP_STRING); }
+"NUMBER"            { count(); return TOKEN(TTP_NUMBER); }
+"OBJECT"            { count(); return TOKEN(TTP_OBJECT); }
+
+":"                 { count(); return TOKEN(':'); }
+";"                 { count(); return TOKEN(';'); }
+
+{NUM}				{ count(); SAVE_NUMTOKEN; return TNUM; }
+{IDENTIFIER}		{ count(); SAVE_TOKEN; return TIDENTIFIER; }
+
+.                   { count(); lexical_error(); }
+
+
+%%
+
+void lexical_error(void) {
+    fprintf(stderr, "lexical error on [%lu:%lu] %s", num_lines, num_column, yytext);
+    exit(1);
+}
+
+void count(void) {
+    int ii;
+
+    for (ii = 0; yytext[ii] != '\0'; ii++) {
+        if (yytext[ii] == '\n') {
+            num_column = 0;
+            num_lines++;
+        }
+        else if (yytext[ii] == '\t') {
+            NSUInteger old_column = num_column + 1;        // +1 for the tab
+            num_column += (NSUInteger)4 - (num_column % 4);
+//            [it addWarning:@"tab found" onLine:num_lines column:old_column];
+        }
+        else {
+            num_column++;
+        }
+    }
+    
+//    [it addParsedString:[NSString stringWithUTF8String:yytext]];
+//    env.line    = num_lines;
+//    env.column  = num_column;
+
+}

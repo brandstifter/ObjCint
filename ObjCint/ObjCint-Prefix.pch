@@ -1,0 +1,37 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <M2Debug/M2Debug.h>
+
+
+	#import "TBCCBlock.h"
+
+    #import "TBCCDeclaration.h"
+
+    #import "TBCCExpression.h"
+    #import "TBCCAssignment.h"
+    #import "TBCCMethodSignature.h"
+    #import "TBCCSendMessage.h"
+
+    #import "TBValue.h"
+    #import "TBString.h"
+    #import "TBNumber.h"
+    #import "TBIdentifier.h"
+
+    #import "TBCCVariable.h"
+    #import "TBCCStatement.h"
+
+    #import "TBCCInputTracer.h"
+
+#endif
+
+#import <stdio.h>
+#import <string.h>
+
+
+#define __FILE_ONLY__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)

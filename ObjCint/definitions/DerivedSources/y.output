@@ -1,0 +1,461 @@
+Terminals which are not used
+
+   TQUOTE
+   TOP_EQUAL
+   TOP_LT
+   TOP_GT
+   TOP_NOT
+   TOP_IF
+   TOCB
+   TCCB
+
+
+Grammar
+
+    0 $accept: program $end
+
+    1 program: stmts
+    2        | /* empty */
+
+    3 stmts: stmt
+    4      | stmts stmt
+
+    5 stmt: assignment TSEMI_COLON
+    6     | declaration TSEMI_COLON
+    7     | expr TSEMI_COLON
+
+    8 assignment: TIDENTIFIER TOP_ASSIGN expr
+
+    9 declaration: type TIDENTIFIER
+
+   10 expr: send_message
+   11     | value
+
+   12 send_message: TOSB TIDENTIFIER method_signatur TCSB
+
+   13 method_signatur: method_without_parameters
+   14                | method_with_parameters
+
+   15 method_without_parameters: TIDENTIFIER
+
+   16 method_with_parameters: TIDENTIFIER TCOLON value method_parameter_list
+
+   17 method_parameter_list: TIDENTIFIER TCOLON value method_parameter_list
+   18                      | /* empty */
+
+   19 value: TSTRING
+   20      | TIDENTIFIER
+   21      | TNUM
+
+   22 type: TTP_NUMBER
+   23     | TTP_STRING
+   24     | TTP_BOOLEAN
+   25     | TTP_OBJECT
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+TCOLON (258) 16 17
+TSEMI_COLON (259) 5 6 7
+TIDENTIFIER (260) 8 9 12 15 16 17 20
+TQUOTE (261)
+TOP_ASSIGN (262) 8
+TOP_EQUAL (263)
+TOP_LT (264)
+TOP_GT (265)
+TOP_NOT (266)
+TOP_IF (267)
+TOCB (268)
+TCCB (269)
+TOSB (270) 12
+TCSB (271) 12
+TTP_BOOLEAN (272) 24
+TTP_NUMBER (273) 22
+TTP_STRING (274) 23
+TTP_OBJECT (275) 25
+TSTRING (276) 19
+TNUM (277) 21
+
+
+Nonterminals, with rules where they appear
+
+$accept (23)
+    on left: 0
+program (24)
+    on left: 1 2, on right: 0
+stmts (25)
+    on left: 3 4, on right: 1 4
+stmt (26)
+    on left: 5 6 7, on right: 3 4
+assignment (27)
+    on left: 8, on right: 5
+declaration (28)
+    on left: 9, on right: 6
+expr (29)
+    on left: 10 11, on right: 7 8
+send_message (30)
+    on left: 12, on right: 10
+method_signatur (31)
+    on left: 13 14, on right: 12
+method_without_parameters (32)
+    on left: 15, on right: 13
+method_with_parameters (33)
+    on left: 16, on right: 14
+method_parameter_list (34)
+    on left: 17 18, on right: 16 17
+value (35)
+    on left: 19 20 21, on right: 11 16 17
+type (36)
+    on left: 22 23 24 25, on right: 9
+
+
+state 0
+
+    0 $accept: . program $end
+
+    TIDENTIFIER  shift, and go to state 1
+    TOSB         shift, and go to state 2
+    TTP_BOOLEAN  shift, and go to state 3
+    TTP_NUMBER   shift, and go to state 4
+    TTP_STRING   shift, and go to state 5
+    TTP_OBJECT   shift, and go to state 6
+    TSTRING      shift, and go to state 7
+    TNUM         shift, and go to state 8
+
+    $default  reduce using rule 2 (program)
+
+    program       go to state 9
+    stmts         go to state 10
+    stmt          go to state 11
+    assignment    go to state 12
+    declaration   go to state 13
+    expr          go to state 14
+    send_message  go to state 15
+    value         go to state 16
+    type          go to state 17
+
+
+state 1
+
+    8 assignment: TIDENTIFIER . TOP_ASSIGN expr
+   20 value: TIDENTIFIER .
+
+    TOP_ASSIGN  shift, and go to state 18
+
+    $default  reduce using rule 20 (value)
+
+
+state 2
+
+   12 send_message: TOSB . TIDENTIFIER method_signatur TCSB
+
+    TIDENTIFIER  shift, and go to state 19
+
+
+state 3
+
+   24 type: TTP_BOOLEAN .
+
+    $default  reduce using rule 24 (type)
+
+
+state 4
+
+   22 type: TTP_NUMBER .
+
+    $default  reduce using rule 22 (type)
+
+
+state 5
+
+   23 type: TTP_STRING .
+
+    $default  reduce using rule 23 (type)
+
+
+state 6
+
+   25 type: TTP_OBJECT .
+
+    $default  reduce using rule 25 (type)
+
+
+state 7
+
+   19 value: TSTRING .
+
+    $default  reduce using rule 19 (value)
+
+
+state 8
+
+   21 value: TNUM .
+
+    $default  reduce using rule 21 (value)
+
+
+state 9
+
+    0 $accept: program . $end
+
+    $end  shift, and go to state 20
+
+
+state 10
+
+    1 program: stmts .
+    4 stmts: stmts . stmt
+
+    TIDENTIFIER  shift, and go to state 1
+    TOSB         shift, and go to state 2
+    TTP_BOOLEAN  shift, and go to state 3
+    TTP_NUMBER   shift, and go to state 4
+    TTP_STRING   shift, and go to state 5
+    TTP_OBJECT   shift, and go to state 6
+    TSTRING      shift, and go to state 7
+    TNUM         shift, and go to state 8
+
+    $default  reduce using rule 1 (program)
+
+    stmt          go to state 21
+    assignment    go to state 12
+    declaration   go to state 13
+    expr          go to state 14
+    send_message  go to state 15
+    value         go to state 16
+    type          go to state 17
+
+
+state 11
+
+    3 stmts: stmt .
+
+    $default  reduce using rule 3 (stmts)
+
+
+state 12
+
+    5 stmt: assignment . TSEMI_COLON
+
+    TSEMI_COLON  shift, and go to state 22
+
+
+state 13
+
+    6 stmt: declaration . TSEMI_COLON
+
+    TSEMI_COLON  shift, and go to state 23
+
+
+state 14
+
+    7 stmt: expr . TSEMI_COLON
+
+    TSEMI_COLON  shift, and go to state 24
+
+
+state 15
+
+   10 expr: send_message .
+
+    $default  reduce using rule 10 (expr)
+
+
+state 16
+
+   11 expr: value .
+
+    $default  reduce using rule 11 (expr)
+
+
+state 17
+
+    9 declaration: type . TIDENTIFIER
+
+    TIDENTIFIER  shift, and go to state 25
+
+
+state 18
+
+    8 assignment: TIDENTIFIER TOP_ASSIGN . expr
+
+    TIDENTIFIER  shift, and go to state 26
+    TOSB         shift, and go to state 2
+    TSTRING      shift, and go to state 7
+    TNUM         shift, and go to state 8
+
+    expr          go to state 27
+    send_message  go to state 15
+    value         go to state 16
+
+
+state 19
+
+   12 send_message: TOSB TIDENTIFIER . method_signatur TCSB
+
+    TIDENTIFIER  shift, and go to state 28
+
+    method_signatur            go to state 29
+    method_without_parameters  go to state 30
+    method_with_parameters     go to state 31
+
+
+state 20
+
+    0 $accept: program $end .
+
+    $default  accept
+
+
+state 21
+
+    4 stmts: stmts stmt .
+
+    $default  reduce using rule 4 (stmts)
+
+
+state 22
+
+    5 stmt: assignment TSEMI_COLON .
+
+    $default  reduce using rule 5 (stmt)
+
+
+state 23
+
+    6 stmt: declaration TSEMI_COLON .
+
+    $default  reduce using rule 6 (stmt)
+
+
+state 24
+
+    7 stmt: expr TSEMI_COLON .
+
+    $default  reduce using rule 7 (stmt)
+
+
+state 25
+
+    9 declaration: type TIDENTIFIER .
+
+    $default  reduce using rule 9 (declaration)
+
+
+state 26
+
+   20 value: TIDENTIFIER .
+
+    $default  reduce using rule 20 (value)
+
+
+state 27
+
+    8 assignment: TIDENTIFIER TOP_ASSIGN expr .
+
+    $default  reduce using rule 8 (assignment)
+
+
+state 28
+
+   15 method_without_parameters: TIDENTIFIER .
+   16 method_with_parameters: TIDENTIFIER . TCOLON value method_parameter_list
+
+    TCOLON  shift, and go to state 32
+
+    $default  reduce using rule 15 (method_without_parameters)
+
+
+state 29
+
+   12 send_message: TOSB TIDENTIFIER method_signatur . TCSB
+
+    TCSB  shift, and go to state 33
+
+
+state 30
+
+   13 method_signatur: method_without_parameters .
+
+    $default  reduce using rule 13 (method_signatur)
+
+
+state 31
+
+   14 method_signatur: method_with_parameters .
+
+    $default  reduce using rule 14 (method_signatur)
+
+
+state 32
+
+   16 method_with_parameters: TIDENTIFIER TCOLON . value method_parameter_list
+
+    TIDENTIFIER  shift, and go to state 26
+    TSTRING      shift, and go to state 7
+    TNUM         shift, and go to state 8
+
+    value  go to state 34
+
+
+state 33
+
+   12 send_message: TOSB TIDENTIFIER method_signatur TCSB .
+
+    $default  reduce using rule 12 (send_message)
+
+
+state 34
+
+   16 method_with_parameters: TIDENTIFIER TCOLON value . method_parameter_list
+
+    TIDENTIFIER  shift, and go to state 35
+
+    $default  reduce using rule 18 (method_parameter_list)
+
+    method_parameter_list  go to state 36
+
+
+state 35
+
+   17 method_parameter_list: TIDENTIFIER . TCOLON value method_parameter_list
+
+    TCOLON  shift, and go to state 37
+
+
+state 36
+
+   16 method_with_parameters: TIDENTIFIER TCOLON value method_parameter_list .
+
+    $default  reduce using rule 16 (method_with_parameters)
+
+
+state 37
+
+   17 method_parameter_list: TIDENTIFIER TCOLON . value method_parameter_list
+
+    TIDENTIFIER  shift, and go to state 26
+    TSTRING      shift, and go to state 7
+    TNUM         shift, and go to state 8
+
+    value  go to state 38
+
+
+state 38
+
+   17 method_parameter_list: TIDENTIFIER TCOLON value . method_parameter_list
+
+    TIDENTIFIER  shift, and go to state 35
+
+    $default  reduce using rule 18 (method_parameter_list)
+
+    method_parameter_list  go to state 39
+
+
+state 39
+
+   17 method_parameter_list: TIDENTIFIER TCOLON value method_parameter_list .
+
+    $default  reduce using rule 17 (method_parameter_list)

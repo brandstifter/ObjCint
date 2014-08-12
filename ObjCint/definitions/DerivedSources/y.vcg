@@ -1,0 +1,624 @@
+graph: {
+	display_edge_labels:	yes
+	priority_phase:	yes
+	port_sharing:	no
+	crossing_weight:	median
+	splines:	yes
+	node: {
+		title:	"0"
+		label:	"state  0\n $accept -> . program $end"
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"1"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"2"
+		label:	"TOSB"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"3"
+		label:	"TTP_BOOLEAN"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"4"
+		label:	"TTP_NUMBER"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"5"
+		label:	"TTP_STRING"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"6"
+		label:	"TTP_OBJECT"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"7"
+		label:	"TSTRING"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"8"
+		label:	"TNUM"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"9"
+		label:	"program"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"10"
+		label:	"stmts"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"11"
+		label:	"stmt"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"12"
+		label:	"assignment"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"13"
+		label:	"declaration"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"14"
+		label:	"expr"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"15"
+		label:	"send_message"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"16"
+		label:	"value"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"0"
+		targetname:	"17"
+		label:	"type"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"1"
+		label:	"state  1\n assignment -> TIDENTIFIER . TOP_ASSIGN expr\n value -> TIDENTIFIER ."
+	}
+	edge: {
+		sourcename:	"1"
+		targetname:	"18"
+		label:	"TOP_ASSIGN"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"2"
+		label:	"state  2\n send_message -> TOSB . TIDENTIFIER method_signatur TCSB"
+	}
+	edge: {
+		sourcename:	"2"
+		targetname:	"19"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"3"
+		label:	"state  3\n type -> TTP_BOOLEAN ."
+	}
+	node: {
+		title:	"4"
+		label:	"state  4\n type -> TTP_NUMBER ."
+	}
+	node: {
+		title:	"5"
+		label:	"state  5\n type -> TTP_STRING ."
+	}
+	node: {
+		title:	"6"
+		label:	"state  6\n type -> TTP_OBJECT ."
+	}
+	node: {
+		title:	"7"
+		label:	"state  7\n value -> TSTRING ."
+	}
+	node: {
+		title:	"8"
+		label:	"state  8\n value -> TNUM ."
+	}
+	node: {
+		title:	"9"
+		label:	"state  9\n $accept -> program . $end"
+	}
+	edge: {
+		sourcename:	"9"
+		targetname:	"20"
+		label:	"$end"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"10"
+		label:	"state 10\n program -> stmts .\n stmts -> stmts . stmt"
+	}
+	backedge: {
+		sourcename:	"10"
+		targetname:	"1"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"10"
+		targetname:	"2"
+		label:	"TOSB"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"10"
+		targetname:	"3"
+		label:	"TTP_BOOLEAN"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"10"
+		targetname:	"4"
+		label:	"TTP_NUMBER"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"10"
+		targetname:	"5"
+		label:	"TTP_STRING"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"10"
+		targetname:	"6"
+		label:	"TTP_OBJECT"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"10"
+		targetname:	"7"
+		label:	"TSTRING"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"10"
+		targetname:	"8"
+		label:	"TNUM"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"10"
+		targetname:	"21"
+		label:	"stmt"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"10"
+		targetname:	"12"
+		label:	"assignment"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"10"
+		targetname:	"13"
+		label:	"declaration"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"10"
+		targetname:	"14"
+		label:	"expr"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"10"
+		targetname:	"15"
+		label:	"send_message"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"10"
+		targetname:	"16"
+		label:	"value"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"10"
+		targetname:	"17"
+		label:	"type"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"11"
+		label:	"state 11\n stmts -> stmt ."
+	}
+	node: {
+		title:	"12"
+		label:	"state 12\n stmt -> assignment . TSEMI_COLON"
+	}
+	edge: {
+		sourcename:	"12"
+		targetname:	"22"
+		label:	"TSEMI_COLON"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"13"
+		label:	"state 13\n stmt -> declaration . TSEMI_COLON"
+	}
+	edge: {
+		sourcename:	"13"
+		targetname:	"23"
+		label:	"TSEMI_COLON"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"14"
+		label:	"state 14\n stmt -> expr . TSEMI_COLON"
+	}
+	edge: {
+		sourcename:	"14"
+		targetname:	"24"
+		label:	"TSEMI_COLON"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"15"
+		label:	"state 15\n expr -> send_message ."
+	}
+	node: {
+		title:	"16"
+		label:	"state 16\n expr -> value ."
+	}
+	node: {
+		title:	"17"
+		label:	"state 17\n declaration -> type . TIDENTIFIER"
+	}
+	edge: {
+		sourcename:	"17"
+		targetname:	"25"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"18"
+		label:	"state 18\n assignment -> TIDENTIFIER TOP_ASSIGN . expr"
+	}
+	edge: {
+		sourcename:	"18"
+		targetname:	"26"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"18"
+		targetname:	"2"
+		label:	"TOSB"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"18"
+		targetname:	"7"
+		label:	"TSTRING"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"18"
+		targetname:	"8"
+		label:	"TNUM"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"18"
+		targetname:	"27"
+		label:	"expr"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"18"
+		targetname:	"15"
+		label:	"send_message"
+		color:	green
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"18"
+		targetname:	"16"
+		label:	"value"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"19"
+		label:	"state 19\n send_message -> TOSB TIDENTIFIER . method_signatur TCSB"
+	}
+	edge: {
+		sourcename:	"19"
+		targetname:	"28"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"19"
+		targetname:	"29"
+		label:	"method_signatur"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"19"
+		targetname:	"30"
+		label:	"method_without_parameters"
+		color:	green
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"19"
+		targetname:	"31"
+		label:	"method_with_parameters"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"20"
+		label:	"state 20\n $accept -> program $end ."
+	}
+	node: {
+		title:	"21"
+		label:	"state 21\n stmts -> stmts stmt ."
+	}
+	node: {
+		title:	"22"
+		label:	"state 22\n stmt -> assignment TSEMI_COLON ."
+	}
+	node: {
+		title:	"23"
+		label:	"state 23\n stmt -> declaration TSEMI_COLON ."
+	}
+	node: {
+		title:	"24"
+		label:	"state 24\n stmt -> expr TSEMI_COLON ."
+	}
+	node: {
+		title:	"25"
+		label:	"state 25\n declaration -> type TIDENTIFIER ."
+	}
+	node: {
+		title:	"26"
+		label:	"state 26\n value -> TIDENTIFIER ."
+	}
+	node: {
+		title:	"27"
+		label:	"state 27\n assignment -> TIDENTIFIER TOP_ASSIGN expr ."
+	}
+	node: {
+		title:	"28"
+		label:	"state 28\n method_without_parameters -> TIDENTIFIER .\n method_with_parameters -> TIDENTIFIER . TCOLON value method_parameter_list"
+	}
+	edge: {
+		sourcename:	"28"
+		targetname:	"32"
+		label:	"TCOLON"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"29"
+		label:	"state 29\n send_message -> TOSB TIDENTIFIER method_signatur . TCSB"
+	}
+	edge: {
+		sourcename:	"29"
+		targetname:	"33"
+		label:	"TCSB"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"30"
+		label:	"state 30\n method_signatur -> method_without_parameters ."
+	}
+	node: {
+		title:	"31"
+		label:	"state 31\n method_signatur -> method_with_parameters ."
+	}
+	node: {
+		title:	"32"
+		label:	"state 32\n method_with_parameters -> TIDENTIFIER TCOLON . value method_parameter_list"
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"26"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"7"
+		label:	"TSTRING"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"32"
+		targetname:	"8"
+		label:	"TNUM"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"32"
+		targetname:	"34"
+		label:	"value"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"33"
+		label:	"state 33\n send_message -> TOSB TIDENTIFIER method_signatur TCSB ."
+	}
+	node: {
+		title:	"34"
+		label:	"state 34\n method_with_parameters -> TIDENTIFIER TCOLON value . method_parameter_list"
+	}
+	edge: {
+		sourcename:	"34"
+		targetname:	"35"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"34"
+		targetname:	"36"
+		label:	"method_parameter_list"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"35"
+		label:	"state 35\n method_parameter_list -> TIDENTIFIER . TCOLON value method_parameter_list"
+	}
+	edge: {
+		sourcename:	"35"
+		targetname:	"37"
+		label:	"TCOLON"
+		color:	blue
+		textcolor:	black
+	}
+	node: {
+		title:	"36"
+		label:	"state 36\n method_with_parameters -> TIDENTIFIER TCOLON value method_parameter_list ."
+	}
+	node: {
+		title:	"37"
+		label:	"state 37\n method_parameter_list -> TIDENTIFIER TCOLON . value method_parameter_list"
+	}
+	backedge: {
+		sourcename:	"37"
+		targetname:	"26"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"37"
+		targetname:	"7"
+		label:	"TSTRING"
+		color:	blue
+		textcolor:	black
+	}
+	backedge: {
+		sourcename:	"37"
+		targetname:	"8"
+		label:	"TNUM"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"37"
+		targetname:	"38"
+		label:	"value"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"38"
+		label:	"state 38\n method_parameter_list -> TIDENTIFIER TCOLON value . method_parameter_list"
+	}
+	backedge: {
+		sourcename:	"38"
+		targetname:	"35"
+		label:	"TIDENTIFIER"
+		color:	blue
+		textcolor:	black
+	}
+	edge: {
+		sourcename:	"38"
+		targetname:	"39"
+		label:	"method_parameter_list"
+		color:	green
+		textcolor:	black
+	}
+	node: {
+		title:	"39"
+		label:	"state 39\n method_parameter_list -> TIDENTIFIER TCOLON value method_parameter_list ."
+	}
+
+
+}
