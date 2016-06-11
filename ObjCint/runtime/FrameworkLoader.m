@@ -59,7 +59,7 @@ static static void cleanupFARC(void);
     self = [super init];
     if (self) {
         _currentVersion     = nil;
-        _bundlePath         = @"/Volumes/Development/code/incubator/TR064/TR064int/frameworks/plugin";
+        _bundlePath         = @"<<the framework bundle to test>>";
         _versionedClasses   = [[NSMutableDictionary alloc] init];
         _retainCounts       = [[NSMutableDictionary alloc] init];
         _loadedFrameworks   = [[NSMutableDictionary alloc] init];
@@ -67,16 +67,16 @@ static static void cleanupFARC(void);
     return self;
 }
 
-//- (BOOL)loadCurrentFramework {
-//
-//    NSString *filename  = [NSString stringWithFormat:@"__FRAMEWORK_TO_LOAD__%@.framework", self.currentVersion];
-//    NSString *path      = [_bundlePath stringByAppendingPathComponent:filename];
-//    NSBundle *frameworkBundle = [NSBundle bundleWithPath:path];
-//
-//    [self.loadedFrameworks setObject:frameworkBundle forKey:filename];
-//
-//    return [frameworkBundle load];
-//}
+- (BOOL)loadCurrentFramework {
+
+    NSString *filename  = [NSString stringWithFormat:@"__FRAMEWORK_TO_LOAD__%@.framework", self.currentVersion];
+    NSString *path      = [_bundlePath stringByAppendingPathComponent:filename];
+    NSBundle *frameworkBundle = [NSBundle bundleWithPath:path];
+
+    [self.loadedFrameworks setObject:frameworkBundle forKey:filename];
+
+    return [frameworkBundle load];
+}
 
 - (Class)currentClassOfClass:(Class)aClass {
 

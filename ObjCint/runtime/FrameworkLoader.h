@@ -20,7 +20,7 @@
 @property (strong) NSMutableDictionary *versionedClasses;
 @property (strong) NSMutableDictionary *retainCounts;
 
-
+- (BOOL)loadCurrentFramework;
 - (Class)currentClassOfClass:(Class)aClass;
 - (Class)versionedClassOfClass:(Class)aClass withVersion:(NSString *)version;
 

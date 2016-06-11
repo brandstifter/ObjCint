@@ -6,7 +6,6 @@
 
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
-    #import <M2Debug/M2Debug.h>
 
 
 	#import "TBCCBlock.h"

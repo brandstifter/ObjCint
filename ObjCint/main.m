@@ -14,8 +14,6 @@
 #import "System.h"
 #import "FrameworkLoader.h"
 
-#import <M2Debug/M2Debug.h>
-
 #import "y.tab.h"
 
 
@@ -170,7 +168,7 @@ int main(int argc, char *argv[])
                 if (d_option_occur > 1)
                     usage();
 
-                [[M2Logger sharedInstance] setDebugLevelMask:M2DebugLevelAllMask];
+                // [[TBLogger sharedInstance] setDebugLevelMask:TBDebugLevelAllMask];
 
                 if (verboseMode & TBCCVerboseMode_1)
                     (void)printf("[D2]: debugMode On: %s", optarg);
@@ -261,10 +259,10 @@ int main(int argc, char *argv[])
 		
 		FrameworkLoader *loader = [FrameworkLoader sharedInstance];
 		loader.currentVersion = @"101";
-		[loader loadCurrentTR064Framework];
+		[loader loadCurrentFramework];
 		
 		loader.currentVersion = @"99";
-		[loader loadCurrentTR064Framework];
+		[loader loadCurrentFramework];
 		
         //  non getopt arguments
 		moreArgs    = argc - optind;
@@ -327,8 +325,8 @@ static void process_file(FILE *file) {
 	yyrestart( file );
 	
 	/*
-	 we stop parsing by throw an error via the yyerror(char *) function.
-	 yyparse returns 0 on success or 1 on *any* error occured. therefore
+	 we stop parsing by throwing an error via the yyerror(char *) function.
+	 yyparse returns 0 on success or 1 on *any* error that occurs. Therefore
 	 we need the yyErrorCode variable to distinguish different errors.
 	 */
 	int rc = yyparse();

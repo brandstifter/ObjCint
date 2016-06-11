@@ -8,8 +8,6 @@
 
 #import "System.h"
 
-#import <M2Debug/M2Debug.h>
-
 #import "NSDictionary+SafeOperations.h"
 #import "FrameworkLoader.h"
 
@@ -78,7 +76,7 @@
 @implementation System (Support)
 
 - (void)enableDebug {
-	[[M2Logger sharedInstance] setDebugLevelMask:M2DebugLevelAllMask];
+	// [[TBLogger sharedInstance] setDebugLevelMask:TBDebugLevelAllMask];
 }
 
 - (void)help {
