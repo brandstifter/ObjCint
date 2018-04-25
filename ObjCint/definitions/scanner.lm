@@ -12,11 +12,11 @@
     #include <stdlib.h>
     #include <stdio.h>
 
-	#define SAVE_TOKEN yylval.string = [[NSString alloc] initWithUTF8String:yytext];
-	#define SAVE_NUMTOKEN NSNumberFormatter * f = [[NSNumberFormatter alloc] init]; [f setNumberStyle:NSNumberFormatterDecimalStyle]; NSString *value = [[NSString alloc] initWithUTF8String:yytext];  yylval.number = [f numberFromString:value]; [f release];
-	#define TOKEN(t) (yylval.token = t)
+    #define SAVE_TOKEN yylval.string = [[NSString alloc] initWithUTF8String:yytext];
+    #define SAVE_NUMTOKEN NSNumberFormatter * f = [[NSNumberFormatter alloc] init]; [f setNumberStyle:NSNumberFormatterDecimalStyle]; NSString *value = [[NSString alloc] initWithUTF8String:yytext];  yylval.number = [f numberFromString:value]; [f release];
+    #define TOKEN(t) (yylval.token = t)
 
-	char* yyStrippedText();
+    char* yyStrippedText();
     void yyerror(char *);
 
     void count(void);
@@ -35,10 +35,10 @@ COLON           :
 SEMI_COLON		\;
 QUOTE           \"
 
-NUM				[0-9][0-9]*
+NUM             [0-9][0-9]*
 
 
-IDENTIFIER		[a-zA-Z_][a-zA-Z0-9_]*
+IDENTIFIER      [a-zA-Z_][a-zA-Z0-9_]*
 
 QUIT            "QUIT"
 
@@ -60,7 +60,7 @@ QUIT            "QUIT"
 }
 
 
-{WS}				{ count(); }
+{WS}                { count(); }
 
 {QUIT}              { count(); yyerror("quit"); }
 
@@ -86,8 +86,8 @@ QUIT            "QUIT"
 ":"                 { count(); return TOKEN(':'); }
 ";"                 { count(); return TOKEN(';'); }
 
-{NUM}				{ count(); SAVE_NUMTOKEN; return TNUM; }
-{IDENTIFIER}		{ count(); SAVE_TOKEN; return TIDENTIFIER; }
+{NUM}               { count(); SAVE_NUMTOKEN; return TNUM; }
+{IDENTIFIER}        { count(); SAVE_TOKEN; return TIDENTIFIER; }
 
 .                   { count(); lexical_error(); }
 
