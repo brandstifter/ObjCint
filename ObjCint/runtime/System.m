@@ -34,24 +34,23 @@
         _variables      = [[NSMutableDictionary alloc] init];
         _definitions    = [[NSMutableDictionary alloc] init];
 		
-		[self initDefaultVariables];
+        [self initDefaultVariables];
     }
     return self;
 }
 
 - (void)dealloc {
-    self.variables		= nil;
-    self.definitions	=  nil;
+    self.variables   = nil;
+    self.definitions =  nil;
 
     [super dealloc];
 }
 
 - (void)initDefaultVariables {
 
-	[self.variables setObject:[FrameworkLoader sharedInstance]		forKey:@"framework"];
-	[self.variables setObject:[NSDate date]							forKey:@"initDate"];
+	[self.variables setObject:[FrameworkLoader sharedInstance] forKey:@"framework"];
+	[self.variables setObject:[NSDate date]	forKey:@"initDate"];
 }
-
 @end
 
 
@@ -69,7 +68,6 @@
 - (void)addVariable:(NSString *)variable withValue:(id)value {
     [self.variables save_setValue:value forKey:variable];
 }
-
 @end
 
 
@@ -84,12 +82,11 @@
 @"                                                          \n"
 @"          @interface System (Support)                     \n"
 @"          - [system help]                                 \n"
-@"          - [system show: \"foobar\";                     \n"
-@"          - [system releaseDeclared];						\n"
-@"                                                          \n"
-@"          @interface System (Modem)                       \n"
-@"          - [system findModem];                           \n"
-@"                                                          \n"   
+@"          - [system show: \"variable\"];    // Log the variables value     \n"
+@"          - [system showall];               // Log the variables value     \n"
+@"          - [system shownames];             // Log the variables value     \n"	    
+@"          - [system releaseVariables];      // Cleanup variable space      \n"
+@"\n"
     );
 }
 
@@ -101,16 +98,16 @@
 
 - (void)showVariables {
 	
-	for (NSString *key in self.variables.allKeys) {
-		NSObject *o = [self.variables valueForKey:key];
-		NSLog(@">  %@", o);
-	}
+    for (NSString *key in self.variables.allKeys) {
+        NSObject *o = [self.variables valueForKey:key];
+        NSLog(@">  %@", o);
+    }
 }
 
 - (void)showVariableNames {
 
-	for (NSString *key in self.variables.allKeys)
-		NSLog(@">  %@", key);
+    for (NSString *key in self.variables.allKeys)
+        NSLog(@">  %@", key);
 }
 
 - (void)releaseVariables {
