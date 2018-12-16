@@ -20,15 +20,9 @@
 		3386C2E218A823B30095DB53 /* parser.ym in Sources */ = {isa = PBXBuildFile; fileRef = 3386C2E118A823B30095DB53 /* parser.ym */; };
 		3386C2EB18A832490095DB53 /* System.m in Sources */ = {isa = PBXBuildFile; fileRef = 3386C2EA18A832490095DB53 /* System.m */; };
 		33CE2F7C18AF81040076D651 /* NSArray+SafeOperations.m in Sources */ = {isa = PBXBuildFile; fileRef = 33CE2F7B18AF81040076D651 /* NSArray+SafeOperations.m */; };
-		33CE2FA418AFB5880076D651 /* M2InternetProtocolKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CE2FA218AFB5880076D651 /* M2InternetProtocolKit.framework */; };
-		33CE2FA518AFB5880076D651 /* M2NetworkInterfaceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33CE2FA318AFB5880076D651 /* M2NetworkInterfaceKit.framework */; };
-		33CE2FA618AFB6550076D651 /* M2NetworkInterfaceKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 33CE2FA318AFB5880076D651 /* M2NetworkInterfaceKit.framework */; };
-		33CE2FA718AFB6570076D651 /* M2InternetProtocolKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 33CE2FA218AFB5880076D651 /* M2InternetProtocolKit.framework */; };
 		33DC84B918B167550061C33F /* TBCCMethodSignature.h in Headers */ = {isa = PBXBuildFile; fileRef = 33DC84B718B167550061C33F /* TBCCMethodSignature.h */; };
 		33DC84BA18B167550061C33F /* TBCCMethodSignature.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DC84B818B167550061C33F /* TBCCMethodSignature.m */; };
 		33DC84C118B167780061C33F /* TBCCStatement.m in Sources */ = {isa = PBXBuildFile; fileRef = 33DC84BD18B167780061C33F /* TBCCStatement.m */; };
-		33DC84C918B171400061C33F /* M2TR064.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33DC84C818B171400061C33F /* M2TR064.framework */; };
-		33DC84CA18B171540061C33F /* M2TR064.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 33DC84C818B171400061C33F /* M2TR064.framework */; };
 		33DC84CB18B172910061C33F /* TBValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 33E6BDE318AEC50000BE0F1A /* TBValue.h */; };
 		33DC84CC18B172A10061C33F /* TBString.h in Headers */ = {isa = PBXBuildFile; fileRef = 33E6BDE118AEC50000BE0F1A /* TBString.h */; };
 		33DC84CD18B172A40061C33F /* TBNumber.h in Headers */ = {isa = PBXBuildFile; fileRef = 33E6BDDF18AEC50000BE0F1A /* TBNumber.h */; };
@@ -45,8 +39,6 @@
 		33E6BDEF18AEC68200BE0F1A /* TBCCAssignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 33E6BDEE18AEC68200BE0F1A /* TBCCAssignment.m */; };
 		9A4E15C518AA5BDF00F90F93 /* TBCCNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E15C318AA5BDF00F90F93 /* TBCCNode.m */; };
 		9A4E15CB18AA606500F90F93 /* TBCCBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E15CA18AA606400F90F93 /* TBCCBlock.m */; };
-		9A4E15D818ABB81B00F90F93 /* M2Debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E15D418ABB81B00F90F93 /* M2Debug.framework */; };
-		9A4E15DC18ABB87400F90F93 /* M2Debug.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 9A4E15D418ABB81B00F90F93 /* M2Debug.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,10 +58,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				33DC84CA18B171540061C33F /* M2TR064.framework in Copy Frameworks */,
-				9A4E15DC18ABB87400F90F93 /* M2Debug.framework in Copy Frameworks */,
-				33CE2FA618AFB6550076D651 /* M2NetworkInterfaceKit.framework in Copy Frameworks */,
-				33CE2FA718AFB6570076D651 /* M2InternetProtocolKit.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,7 +68,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				3386C2D818A823210095DB53 /* TR064int.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -99,7 +86,6 @@
 		3386C2D018A823210095DB53 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3386C2D318A823210095DB53 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3386C2D618A823210095DB53 /* ObjCint-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ObjCint-Prefix.pch"; sourceTree = "<group>"; };
-		3386C2D718A823210095DB53 /* TR064int.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TR064int.1; sourceTree = "<group>"; };
 		3386C2DF18A8239D0095DB53 /* scanner.lm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.lex; path = scanner.lm; sourceTree = "<group>"; };
 		3386C2E118A823B30095DB53 /* parser.ym */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.yacc; path = parser.ym; sourceTree = "<group>"; };
 		3386C2E918A832490095DB53 /* System.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = System.h; sourceTree = "<group>"; };
@@ -107,13 +93,10 @@
 		33BE30CC18AFBB2C00F9554B /* DerivedSources */ = {isa = PBXFileReference; lastKnownFileType = folder; path = DerivedSources; sourceTree = "<group>"; };
 		33CE2F7A18AF81040076D651 /* NSArray+SafeOperations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+SafeOperations.h"; sourceTree = "<group>"; };
 		33CE2F7B18AF81040076D651 /* NSArray+SafeOperations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SafeOperations.m"; sourceTree = "<group>"; };
-		33CE2FA218AFB5880076D651 /* M2InternetProtocolKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M2InternetProtocolKit.framework; path = frameworks/M2InternetProtocolKit.framework; sourceTree = "<group>"; };
-		33CE2FA318AFB5880076D651 /* M2NetworkInterfaceKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M2NetworkInterfaceKit.framework; path = frameworks/M2NetworkInterfaceKit.framework; sourceTree = "<group>"; };
 		33DC84B718B167550061C33F /* TBCCMethodSignature.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCCMethodSignature.h; sourceTree = "<group>"; };
 		33DC84B818B167550061C33F /* TBCCMethodSignature.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCCMethodSignature.m; sourceTree = "<group>"; };
 		33DC84BC18B167780061C33F /* TBCCStatement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCCStatement.h; sourceTree = "<group>"; };
 		33DC84BD18B167780061C33F /* TBCCStatement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCCStatement.m; sourceTree = "<group>"; };
-		33DC84C818B171400061C33F /* M2TR064.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = M2TR064.framework; sourceTree = "<group>"; };
 		33DC84D318B184350061C33F /* ObjCint Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ObjCint Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33DC84D418B184350061C33F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		33E6BDD618AEC2BD00BE0F1A /* FrameworkLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrameworkLoader.h; sourceTree = "<group>"; };
@@ -136,7 +119,6 @@
 		9A4E15C318AA5BDF00F90F93 /* TBCCNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCCNode.m; sourceTree = "<group>"; };
 		9A4E15C918AA606400F90F93 /* TBCCBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TBCCBlock.h; sourceTree = "<group>"; };
 		9A4E15CA18AA606400F90F93 /* TBCCBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TBCCBlock.m; sourceTree = "<group>"; };
-		9A4E15D418ABB81B00F90F93 /* M2Debug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = M2Debug.framework; path = frameworks/M2Debug.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,11 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33CE2FA418AFB5880076D651 /* M2InternetProtocolKit.framework in Frameworks */,
-				33DC84C918B171400061C33F /* M2TR064.framework in Frameworks */,
-				33CE2FA518AFB5880076D651 /* M2NetworkInterfaceKit.framework in Frameworks */,
 				3386C2D118A823210095DB53 /* Foundation.framework in Frameworks */,
-				9A4E15D818ABB81B00F90F93 /* M2Debug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,9 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				33BE30C918AFB90D00F9554B /* plugins */,
-				33CE2FA218AFB5880076D651 /* M2InternetProtocolKit.framework */,
-				33CE2FA318AFB5880076D651 /* M2NetworkInterfaceKit.framework */,
-				9A4E15D418ABB81B00F90F93 /* M2Debug.framework */,
 				3386C2D018A823210095DB53 /* Foundation.framework */,
 				33DC84D418B184350061C33F /* XCTest.framework */,
 			);
@@ -203,7 +178,6 @@
 				33E6BDD518AEC0FE00BE0F1A /* runtime */,
 				33CE2F7D18AFB1CF0076D651 /* framework_headers */,
 				3386C2D318A823210095DB53 /* main.m */,
-				3386C2D718A823210095DB53 /* TR064int.1 */,
 				3386C2D518A823210095DB53 /* Supporting Files */,
 			);
 			path = ObjCint;
@@ -240,7 +214,6 @@
 		33BE30C918AFB90D00F9554B /* plugins */ = {
 			isa = PBXGroup;
 			children = (
-				33DC84C818B171400061C33F /* M2TR064.framework */,
 			);
 			name = plugins;
 			path = frameworks/plugin;
